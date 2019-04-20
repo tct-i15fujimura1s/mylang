@@ -1,0 +1,1 @@
+Real = trait < Num[Real], Ordered[Real]
