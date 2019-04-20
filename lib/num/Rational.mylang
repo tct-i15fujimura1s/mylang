@@ -1,0 +1,4 @@
+Rational = class < Real
+  add(q: Rational): Rational
+  subtract(q: Rational): Rational
+  multiply(q: Rational): Rational
