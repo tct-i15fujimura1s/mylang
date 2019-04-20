@@ -1,0 +1,4 @@
+File[encoding: Encoding = RAW] = class
+  construct(path: Path, mode: String): ()
+  reader: Reader[encoding]
+  writer: Writer[encoding]
