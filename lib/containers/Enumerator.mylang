@@ -1,0 +1,3 @@
+Enumerator[E] = class < Countable[E]
+  next: Enumerator[E]
+  value: E
