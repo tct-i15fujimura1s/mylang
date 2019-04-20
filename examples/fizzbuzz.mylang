@@ -1,0 +1,10 @@
+use (import "stdio")
+
+(1..100).forEach i ->
+  print (
+    true case
+      i % 15 == 0 -> "FizzBuzz"
+      i % 3 == 0 -> "Fizz"
+      i % 5 == 0 -> "Buzz"
+      _ -> i as String
+  )
