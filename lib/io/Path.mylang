@@ -1,0 +1,1 @@
+Path[encoding?: Encoding, length?: Nat] = class < String[encoding | UTF8, length]
