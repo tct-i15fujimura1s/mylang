@@ -1,3 +1,5 @@
 IO[encoding: Encoding = RAW] = trait
   read(length?: Nat): String[encoding, length]?
   write(data: String[encoding]): ()?
+  isReadable: Prop
+  isWritable: Prop
