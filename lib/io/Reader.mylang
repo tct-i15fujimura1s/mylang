@@ -1,2 +1,2 @@
 Reader[encoding: Encoding] = class
-  read(length?: Nat): String[encoding, length]
+  read(length?: Nat): String[encoding, length]?
