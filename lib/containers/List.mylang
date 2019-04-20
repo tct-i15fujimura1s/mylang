@@ -1,2 +1,2 @@
-List[E, length: Nat] = class < Array[E, length]
+List[E, length?: Nat] = class < Array[E, length]
   add(x: E): Prop
