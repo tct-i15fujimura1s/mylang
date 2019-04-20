@@ -8,5 +8,5 @@ Equatable[T: Type] = trait
   
   # theorems
   reflexivity: Prop = true
-  symmetricity[x: T]: Prop = (this == x) -> (x == this)
-  transitivity[x, y: T]: Prop = (this == x and x == y) -> (this == y)
+  symmetricity[x: T]: Prop = this == x => x == this
+  transitivity[x, y: T]: Prop = this == x and x == y => this == y
