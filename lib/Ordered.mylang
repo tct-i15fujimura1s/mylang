@@ -1,0 +1,17 @@
+Ordered[T] = trait < Equatable[T]
+  # default methods
+  isLessThanOrEqual(x: T): Prop = isLessThan x or equals x
+  isLessThan(x: T): Prop = ! isGreaterThanOrEqual x
+  isGreaterThanOrEqual(x: T): Prop = isGreaterThan x or equals x
+  isGreaterThan(x: T): Prop = ! isLessThanOrEqual x
+  
+  # operators
+  operator "<=" isLessThanOrEqual
+  operator "<" isLessThan
+  operator ">=" isGreaterThanOrEqual
+  operator ">" isGreaterThan
+  
+  # theorems
+  antisymmetry[x: T]: Prop = this <= x and x <= this => this == x
+  transitivity[x, y: T]: Prop = this <= x and x <= y => this <= y
+  connexity[x: T]: Prop = this <= x or x <= this
