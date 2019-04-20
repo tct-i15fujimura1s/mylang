@@ -1,6 +1,6 @@
 Range[T < Ordered[T]] = class
-  construct(@begin: T, @end: T) = {}
+  construct(@begin?: T = none, @end?: T = none) = {}
   
   begin, end = @begin, @end
   
-  contains(x: T): Prop = begin <= x and x <= end
+  contains(x: T): Prop = begin? <= x and end? >= x
