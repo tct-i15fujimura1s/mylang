@@ -1,2 +1,2 @@
 Enumerable[E] = trait < Multiset[E]
-  forEach(f: E -> ()): ()
+  enumerator: Enumerator[E]
