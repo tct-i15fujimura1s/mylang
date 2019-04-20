@@ -1,0 +1,10 @@
+RandomIO[encoding: Encoding = RAW] = trait < IO[encoding]
+  seek(offset: Int, whence: Whence = SET): ()?
+  tell: Nat?
+  
+  ::Whence = enum
+    SET
+    CUR
+    END
+    DATA
+    HOLE
