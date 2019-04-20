@@ -1,3 +1,3 @@
 IO[encoding: Encoding = RAW] = trait
-  reader: Reader[encoding]
-  writer: Writer[encoding]
+  read(length?: Nat): String[encoding, length]?
+  write(data: String[encoding]): ()?
