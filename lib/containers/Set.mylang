@@ -1,0 +1,3 @@
+Set[E] = class
+  < Multiset[E]
+    contains(x: E): Prop
