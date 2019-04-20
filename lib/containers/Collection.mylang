@@ -1,0 +1,5 @@
+Collection[E] = trait
+  < Enumerable[E]
+    enumerator = Enumerator this
+   
+  forEach(f: E -> ()): () = enumerator.forEach(f)
