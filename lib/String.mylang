@@ -1,0 +1,3 @@
+String[encoding: Encoding, length?: Nat] = class < Array[Char[encoding], length]
+  encode(from: Encoding = encoding, to: Encoding): String[to, length]
+  bytes: Array[Byte]
