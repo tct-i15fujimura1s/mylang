@@ -1,0 +1,1 @@
+OrderedSet[E < Ordered[E]] = trait < Set[E]
