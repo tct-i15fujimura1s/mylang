@@ -1,0 +1,3 @@
+IO[encoding: Encoding = RAW] = trait
+  reader: Reader[encoding]
+  writer: Writer[encoding]
