@@ -1,0 +1,3 @@
+Nat = class < Int
+  add(n: Nat): Nat
+  multiply(n: Nat): Nat
