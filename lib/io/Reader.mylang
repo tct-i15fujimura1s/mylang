@@ -1,2 +1,0 @@
-Reader[encoding: Encoding] = class
-  read(length?: Nat): String[encoding, length]?
