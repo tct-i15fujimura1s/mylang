@@ -1,0 +1,4 @@
+Multiset[E] = trait
+  contains(x: E): Prop
+  isEmpty: Prop
+  size: Real
