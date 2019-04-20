@@ -2,7 +2,11 @@ Equatable[T: Type] = trait
   # abstract method
   equals(x: T): Prop
   
+  # notation
+  operator "==" equals
+  operator "!=" x -> ! equals x
+  
   # theorems
-  reflexivity[x: T]: Prop = x == x
-  symmetricity[x, y: T]: Prop = x == y and y == x
-  transitivity[x, y, z: T]: Prop = x == y and y == z
+  reflexivity: Prop = true
+  symmetricity[x: T]: Prop = (this == x) -> (x == this)
+  transitivity[x, y: T]: Prop = (this == x and x == y) -> (this == y)
