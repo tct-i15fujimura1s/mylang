@@ -1,0 +1,9 @@
+DateTime[timeZone: TimeZone = LOCAL] = class < Date[timeZone], Time[timeZone]
+  < Ordered[DateTime]
+    isLessThanOrEqual(x: DateTime): Prop = (this as Date) < (x as Date) or (this as Date) == (x as Date) and (this as Time) <= (x as Time)
+  
+  add(x: DateTimeOffset): DateTime = new(date + x.dateOffset, time + x.timeOffset)
+  subtract(x: DateTime): DateTimeOffset = new(date - x.date, time - x.time)
+  
+  date: Date = Date(year, month, dayOfMonth)
+  time: Time = Time(hours, minutes, seconds, nanoSeconds)
