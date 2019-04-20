@@ -1,0 +1,4 @@
+Float = class < Real
+  add(x: Float): Float
+  subtract(x: Float): Float
+  multiply(x: Float): Float
