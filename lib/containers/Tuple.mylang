@@ -1,0 +1,1 @@
+Tuple[X: OrderedMap[Nat, Type]] = class < OrderedSet[Nat]
