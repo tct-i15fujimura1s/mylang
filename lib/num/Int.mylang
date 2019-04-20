@@ -1,1 +1,5 @@
-Int = class < Real[Int]
+Int = class < Rational
+  add(n: Int): Int
+  subtract(n: Int): Int
+  multiply(n: Int): Int
+  remainder(n: Int): Int
