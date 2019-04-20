@@ -1,0 +1,1 @@
+CountableRange[T < Countable[T]] = class < Range[T], Enumerable[T]
