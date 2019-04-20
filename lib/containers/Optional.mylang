@@ -1,0 +1,3 @@
+Optional[T] = class < Container[T]
+  map[U](f: T -> U): Optional[U]
+  isPresent: Prop
