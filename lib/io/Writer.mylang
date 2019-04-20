@@ -1,0 +1,2 @@
+Writer[encoding: Encoding] = class
+  write(data: String[encoding]): ()
