@@ -1,1 +1,1 @@
-Array[E, length: Nat] = class < OrderedMap[Nat, E], Collection[E]
+Array[E, length?: Nat] = class < OrderedMap[Nat, E], Collection[E]
