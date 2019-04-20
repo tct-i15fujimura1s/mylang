@@ -1,0 +1,8 @@
+Equatable[T: Type] = trait
+  # abstract method
+  equals(x: T): Prop
+  
+  # theorems
+  reflexivity[x: T]: Prop = x == x
+  symmetricity[x, y: T]: Prop = x == y and y == x
+  transitivity[x, y, z: T]: Prop = x == y and y == z
