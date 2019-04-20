@@ -1,0 +1,1 @@
+OrderedMap[K < Ordered[K], V] = trait < Map[K, V]
