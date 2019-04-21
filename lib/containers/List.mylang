@@ -1,2 +1,4 @@
-List[E, length?: Nat] = class < Array[E, length]
-  add(x: E): Prop
+List[E, size: Nat] = class < Collection[E, size]
+  add(x: E): List[E, size + 1]
+  concat(xs: List[E, n: Nat]): List[E, size + n]
+  
