@@ -1,2 +1,3 @@
-Collection[E] = trait < Enumerable[E]
-  forEach(f: E -> ()): ()
+Collection[@E, @size: Nat] = trait < Enumerable[E]
+  forEach(f: @E -> ()): ()
+  size = @size
