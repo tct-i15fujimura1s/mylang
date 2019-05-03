@@ -43,21 +43,25 @@ do while n > 0
   n >>= 1
 ```
 
-## 定数
+## ＊数
+定数、変数には値を入れることができる
+関数には式を入れることができる
+
+### 定数
 ```
 val x = 1
 val x: Int = 1
 val x @defer: Int # 遅延代入 (定義時に代入しない場合、@defer注釈を付けないとエラーになります)
 ```
 
-## 変数
+### 変数
 ```
 var x = 1
 var x: Int = 1
 var x: Int
 ```
 
-## 関数
+### 関数
 ```
 c = 1     # 定数関数。定数と定数関数の違いは、正格評価か、遅延評価かです
 f x = x   # 恒等関数
@@ -95,9 +99,10 @@ addInt = (x, y: Int) -> x + y
 
 ## モジュール
 他のモジュールに組み込んだりもできる
+インスタンスメソッドを持つこともできる (Javaでいうabstract class)
 ```
 ModA = module
-  ::staticConst1 = 1
+  val ::staticConst1 = 1
   ::staticMethod1(x) = ...
   
   var _var1 = 1 # 名前の先頭が_のとき、自動的にprivateになる
@@ -111,7 +116,7 @@ ModA = module
 ModA.staticConst1
 ```
 
-## クラス
+### クラス
 newできるモジュール
 ```
 Counter = class
@@ -122,6 +127,31 @@ Counter = class
     c = _count
     _count += 1
     return c
+```
+
+### 継承
+```
+Foo = class
+  name = "Foo"
+  action! = print! "foooo!"
+
+# Fooから継承したnameをオーバーライド
+Bar = class
+  < Foo
+    name @override = "Bar"
+    action! @override = print! "boo!"
+
+# メソッドの継承元を明示しない場合
+Baz = class < Foo
+  name @override = "Baz"
+
+# Bar#action!, Baz#nameを使うと明示する (衝突するので、明示しないとエラー)
+BazBar = class
+  < Baz
+    name
+    
+  < Bar
+    action!
 ```
 
 ## インポート
