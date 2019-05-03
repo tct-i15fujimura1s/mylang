@@ -85,6 +85,14 @@ count! = # 副作用のある関数で、名前の末尾が!でない場合は�
   return c
 ```
 
+### ラムダ式
+```
+succ = x -> x + 1
+add = (x, y) -> x + y
+curriedAdd = x -> y -> x + y
+addInt = (x, y: Int) -> x + y
+```
+
 ## モジュール
 他のモジュールに組み込んだりもできる
 ```
