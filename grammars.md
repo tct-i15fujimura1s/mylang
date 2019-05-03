@@ -62,9 +62,9 @@ var x: Int
 c = 1     # 定数関数。定数と定数関数の違いは、正格評価か、遅延評価かです
 f x = x   # 恒等関数
 f(x: Int) = x # Int型のみ
-f(x, y: Int): Int = x + y
-f(x: Int, y: String) = (x as String) + y
-k x y = x
+f(x: Int, y: String) = (x as String) + y # 複数の異なる型の引数
+f(x, y: Int): Int = x + y # 複数の同じ型の引数
+k x y = x # カリー化
 
 # 複数行の定義
 max(x, y) =
