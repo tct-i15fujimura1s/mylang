@@ -1,7 +1,7 @@
 use (import "stdio")
 
 (1..100).forEach i ->
-  print (
+  print! (
     true case
       i % 15 == 0 -> "FizzBuzz"
       i % 3 == 0 -> "Fizz"
