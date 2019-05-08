@@ -3,7 +3,7 @@
 
 %%
 
-block       : INDENT lines DEDENT
+block       : INDENT lines UNINDENT
             | '{' lines '}'
             ;
 
