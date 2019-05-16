@@ -97,6 +97,20 @@ curriedAdd = x -> y -> x + y
 addInt = (x, y: Int) -> x + y
 ```
 
+### 多相型
+```
+# A => B と (x: A) => B は同じ意味
+F: K = A => B
+```
+
+### 依存型
+```
+F: K = (x: A) => B
+f: F = (x: A) -> b
+x: A = a
+y: F[x] = f x
+```
+
 ## モジュール
 他のモジュールに組み込んだりもできる
 インスタンスメソッドを持つこともできる (Javaでいうabstract class)
