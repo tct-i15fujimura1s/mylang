@@ -1,14 +1,11 @@
-## コメント
+## comments
 ```
-# これはコメントです
-#から行末までがコメントになります
+# This is a line comment from # to line ending
 (#
-  複数行のコメントです
-  (# ネストできます #)
+  This is a block comment
+  (# which can be nested #)
 #)
 ```
-
-## 制御構文
 
 ### if-elif-else
 ```
@@ -21,7 +18,7 @@ elif x % 5 == 0
 else
   print! x
 
-if y < 0, y = 0 # 単一行
+if y < 0, y = 0 # single line
 ```
 
 ### case
@@ -43,53 +40,48 @@ do while n > 0
   n >>= 1
 ```
 
-## ＊数
-定数、変数には値を入れることができる
-関数には式を入れることができる
-
-### 定数
+### constants
 ```
 val x = 1
 val x: Int = 1
-val x @defer: Int # 遅延代入 (定義時に代入しない場合、@defer注釈を付けないとエラーになります)
+val x @defer: Int # deferred assignment (@defer annotation required)
 ```
 
-### 変数
+### variables
 ```
 var x = 1
 var x: Int = 1
 var x: Int
 ```
 
-### 関数
+### functions
 ```
-c = 1     # 定数関数。定数と定数関数の違いは、正格評価か、遅延評価かです
-f x = x   # 恒等関数
-f(x: Int) = x # Int型のみ
-f(x: Int, y: String) = (x as String) + y # 複数の異なる型の引数
-f(x, y: Int): Int = x + y # 複数の同じ型の引数
-k x y = x # カリー化
+c = 1     # constant function. difference between constant and constant function is evaluation strategy. constant functions are lazy
+f x = x   # identity function
+f(x: Int) = x # Int type
+f(x: Int, y: String) = (x as String) + y # multiple arguments with different types 
+f(x, y: Int): Int = x + y # multiple arguments with the same type 
+k x y = x # curried
 
-# 複数行の定義
 max(x, y) =
   if x < y
     return y
   return x
 
-# 多重定義
+# overloading
 fib 0 = 0
 fib 1 = 1
 fib[n > 1](n: Int) = fib(n - 1) + fib(n - 2)
 
-# 副作用のある関数
+# with side effect
 _count = 0
-count! = # 副作用のある関数で、名前の末尾が!でない場合は、@sideEffect注釈を付けないとエラーになります
+count! = # if the function has side effects, either suffix! or @sideEffect annotation is required
   c = _count
   _count += 1
   return c
 ```
 
-### ラムダ式
+### lambda
 ```
 succ = x -> x + 1
 add = (x, y) -> x + y
@@ -97,13 +89,13 @@ curriedAdd = x -> y -> x + y
 addInt = (x, y: Int) -> x + y
 ```
 
-### 多相型
+### polymorph types
 ```
-# A => B と (x: A) => B は同じ意味
+# A => B is syntax sugar to (x: A) => B
 F: K = A => B
 ```
 
-### 依存型
+### dependent types
 ```
 F: K = (x: A) => B
 f: F = (x: A) -> b
@@ -111,31 +103,30 @@ x: A = a
 y: F[x] = f x
 ```
 
-## モジュール
-他のモジュールに組み込んだりもできる
-インスタンスメソッドを持つこともできる (Javaでいうabstract class)
+## trait
+like abstract class in Java but one class can include two or more traits
 ```
-ModA = module
+TrA = trait
   val ::staticConst1 = 1
   ::staticMethod1(x) = ...
   
-  var _var1 = 1 # 名前の先頭が_のとき、自動的にprivateになる
-  var _var2 @public = 1 # @public注釈によって強制public化
+  var _var1 = 1 # when the name of variable starts with '_', it's private in default
+  var _var2 @public = 1 # coerce public by @public annotation
   var var3 =
   
-  _con1 = 1 # private定数
-  con2 = 2 # public定数
-  con3 @protected = 3 # protected定数
+  _con1 = 1 # private const.
+  con2 = 2 # public const.
+  con3 @protected = 3 # protected const.
 
-ModA.staticConst1
+TrA.staticConst1
 ```
 
-### クラス
-newできるモジュール
+### class
+Classes are new-able traits.
 ```
 Counter = class
   var _count
-  construct!(init: Int) = # コンストラクタconstruct!
+  construct!(init: Int) = # constructor construct!
     _count = init
   count! =
     c = _count
@@ -143,7 +134,7 @@ Counter = class
     return c
 ```
 
-### 継承
+### (multiple) inheritance
 ```
 Foo = class
   name = "Foo"
@@ -168,7 +159,7 @@ BazBar = class
     action!
 ```
 
-## インポート
+## import
 ```
 import "openssl"
 import "./example1"
@@ -176,7 +167,7 @@ import "openssl" as OSSL
 import {Cipher} from "openssl"
 ```
 
-## エクスポート
+## export
 ```
 import "std"
 export main! _ = std.out.print! "hello\n"
@@ -188,7 +179,7 @@ export OpenSSL @default = module
 
 ## misc.
 
-### staticスコープ
+### static scope
 ```
 color = Color.BLUE
 color: Color = BLUE
