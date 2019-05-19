@@ -1,3 +1,5 @@
+ver0.1.0
+
 ## コメント
 ```
 # これはコメントです
@@ -182,3 +184,13 @@ color: Color = BLUE
 case color
   Color.BLUE ->
 ```
+
+### try-catch
+try
+  req = http.get("http://example.com")
+  req.onfinished = () ->
+    if req.status == 200: throw req.response
+    else throw Exception(req.statusText)
+catch
+  (res: http.Response) -> print! res.body
+  (e: Excepiton) -> print! e.stackTrace
