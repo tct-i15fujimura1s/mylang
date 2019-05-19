@@ -186,6 +186,7 @@ case color
 ```
 
 ### try-catch
+```
 try
   req = http.get("http://example.com")
   req.onfinished = () ->
@@ -194,3 +195,4 @@ try
 catch
   (res: http.Response) -> print! res.body
   (e: Excepiton) -> print! e.stackTrace
+```
