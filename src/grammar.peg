@@ -16,37 +16,27 @@ re_assign <- lexpr (s? "=" s? rexpr)*
 
 re_mid <- re_logic / 
 
-re_logic <- re_logic_or_s / re_logic_and_s / re_logic_not_s / re_logic_or / re_logic_and / re_logic_not
-re_logic_or_s <- _re_logic_and_s (s? "or" s? _re_logic_and_s)*
-_re_logic_and_s <- re_logic_and_s / _re_logic_not_s
-re_logic_and_s <- _re_logic_not_s (s? "and" s? _re_logic_not_s)*
-_re_logic_not_s <- re_logic_not_s / _re_logic_or
-re_logic_not_s <- ("not" s?)+ _re_logic_or
-_re_logic_or <- re_logic_or / _re_logic_and
-re_logic_or <- _re_logic_and (s? "||" s? _re_logic_and)+
-_re_logic_and <- re_logic_and / _re_logic_not
-re_logic_and <- _re_logic_not (s? "&&" s? _re_logic_not)+
-_re_logic_not <- re_logic_not / re_compare
-re_logic_not <- ("!" s?)+ _re_compare
+re_logic <- re_logic_or_s
+re_logic_or_s <- re_logic_and_s (s? "or" s? re_logic_and_s)*
+re_logic_and_s <- re_logic_not_s (s? "and" s? re_logic_not_s)*
+re_logic_not_s <- ("not" s?)* re_logic_or
+re_logic_or <- re_logic_and (s? "||" s? re_logic_and)*
+re_logic_and <- re_logic_not (s? "&&" s? re_logic_not)*
+re_logic_not <- ("!" s?)* re_compare
 
-_re_compare <- re_compare / re_hand
-re_compare <- re_hand (s? ("==" / "!=" / "===" / "!==" / "=~" / "!~" / "<" / "<=" / ">" / ">=" / "<>" / "<=>") s? re_hand)+
+re_compare <- re_hand (s? ("==" / "!=" / "===" / "!==" / "=~" / "!~" / "<" / "<=" / ">" / ">=" / "<>" / "<=>") s? re_hand)*
 
-re_bit <- re_bit_or / re_bit_xor / re_bit_and / re_shift / re_bit_not
-re_bit_or <- _re_bit_xor (s? "|" s? _re_bit_xor)+
-_re_bit_xor <- re_bit_xor / _re_bit_and
-re_bit_xor <- _re_bit_and (s? "^" s? _re_bit_and)+
-_re_bit_and <- re_bit_and / _re_bit_not
-re_bit_and <- _re_shift (s? "&" s? _re_shift)+
-_re_shift <- re_shift / _re_bit_not
-re_shift <- _re_bit_not (s? ("<<" / ">>") s? _re_bit_not)+
-_re_bit_not <- re_bit_not / re_arith
-re_bit_not <- ("~" s?)+ re_arith
+re_hand <- re_or
+re_or <- re_xor (s? "|" s? re_xor)*
+re_xor <- re_and (s? "^" s? re_and)*
+re_and <- re_shift (s? "&" s? re_shift)*
+re_shift <- re_arith (s? ("<<" / ">>") s? re_arith)*
 
-re_arith <- re_additive / re_multitive / re_power
-re_additive <- _re_multitive (s? ("+" / "-") s? _re_multitive)+
-_re_multitive <- re_multitive / _re_power
-re_multitive <- _re_power (s? ("*" / "/" / "%")s? _re_power)+
-_re_power <- re_power / re_prime
-re_power <- (re_prime s? "**" s?)+ re_prime
+re_arith <- re_additive
+re_additive <- re_multitive (s? ("+" / "-") s? re_multitive)*
+re_multitive <- re_power (s? ("*" / "/" / "%")s? re_power)*
+re_power <- (re_not s? "**" s?)* re_not
 
+re_not <- ("~" s?)* re_prime
+
+re_prime <- re_string
