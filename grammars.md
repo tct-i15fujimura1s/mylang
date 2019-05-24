@@ -23,7 +23,7 @@ elif x % 5 == 0
 else
   print! x
 
-if y < 0, y = 0 # 単一行
+if y < 0: y = 0 # 単一行
 ```
 
 ### case
