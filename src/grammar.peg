@@ -11,10 +11,12 @@ re_def <- "def" s? lexpr (s? args)* (s? ":" s? texpr)? (s? "=" s? (rexpr/ block)
 args <- "(" s? (arg (s? "," s? arg)*)? s? ")"
 arg <- le_mid (s? "=" s? re_mid)?
 
-# FIXME
-re_assign <- lexpr (s? "=" s? rexpr)*
 
-re_mid <- re_logic / 
+re_mid <- re_lambda / re_assign / re_logic
+
+re_assign <- (lexpr s? "=" s?)+ re_mid
+
+re_lambda <- ((le_tuple / arg_small) s? "->" s?)+ re_mid
 
 re_logic <- re_logic_or_s
 re_logic_or_s <- re_logic_and_s (s? "or" s? re_logic_and_s)*
@@ -34,9 +36,28 @@ re_shift <- re_arith (s? ("<<" / ">>") s? re_arith)*
 
 re_arith <- re_additive
 re_additive <- re_multitive (s? ("+" / "-") s? re_multitive)*
-re_multitive <- re_power (s? ("*" / "/" / "%")s? re_power)*
+re_multitive <- re_power (s? ("*" / "/" / "%") s? re_power)*
 re_power <- (re_not s? "**" s?)* re_not
 
 re_not <- ("~" s?)* re_prime
 
-re_prime <- re_string
+re_prime <- le_member / re_literals / re_group
+
+re_group <- "(" s? rexpr s? ")"
+
+
+
+le_mid <-
+
+
+le_prime <-  le_member_bracket / le_member_dot / le_tuple / le_group / name
+
+le_member_bracket <- le_prime s? "[" s? rexpr s? "]"
+le_member_dot <- le_prime (s? "." s? le_prime)+
+
+le_tuple <- "(" le_tuple_contents? ")"
+le_tuple_contents <- le_tuple_content (s? "," s? le_tuple_content)+
+le_tuple_content <- (le_prime s? "=" s? le_mid)
+
+le_group <- "(" s? lexpr s? ")"
+
