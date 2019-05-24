@@ -12,18 +12,15 @@ ver0.1.0
 
 ## 制御構文
 
-### if-elif-else
+### if
 ```
-if x % 3 == 0 and x % 5 == 0
-  print! "FizzBuzz"
-elif x % 3 == 0
-  print! "Fizz"
-elif x % 5 == 0
-  print! "Buzz"
-else
-  print! x
+print! if
+  x % 3 == 0 and x % 5 == 0 -> "FizzBuzz"
+  x % 3 == 0 -> "Fizz"
+  x % 5 == 0 -> "Buzz"
+  _ -> x as String
 
-if y < 0: y = 0 # 単一行
+if y < 0 -> y = 0
 ```
 
 ### case
