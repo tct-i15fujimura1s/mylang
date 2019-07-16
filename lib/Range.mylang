@@ -1,4 +1,4 @@
-Range[T < Ordered[T]] = class
+Range(T < Ordered T) = class
   construct(@begin?: T = none, @end?: T = none) = {}
   
   begin, end = @begin, @end
