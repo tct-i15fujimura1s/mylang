@@ -1,6 +1,6 @@
 use (import "stdio")
 
-primes = List[Nat]()
+primes: List Nat = []
 (2..).forEach n ->
   if ! primes.any(n % _ == 0)
     print! "\(n)\n"
