@@ -3,5 +3,5 @@ use (import "stdio")
 primes = List[Nat]()
 (2..).forEach n ->
   if ! primes.any(n % _ == 0)
-    print! "$n\n"
+    print! "\(n)\n"
     primes << n
