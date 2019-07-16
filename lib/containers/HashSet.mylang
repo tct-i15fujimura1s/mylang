@@ -1,0 +1,2 @@
+HashSet = class(E < Hashable) < Set(E)
+  
