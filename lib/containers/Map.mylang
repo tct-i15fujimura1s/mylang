@@ -1,1 +1,1 @@
-Map[K, V] = class < Collection[(K, V)], Set[K]
+Map[K, V] = class < Set Pair(K, V)
